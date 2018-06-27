@@ -1,23 +1,14 @@
 package main
 
 import "fmt"
+import "os"
 
 func main() {
 
-	nome := "Elvis"
-	versao := 1.1
+	boasVindas()
+	exibeMenu()
 
-	fmt.Println("Olá, sr.", nome)
-	fmt.Println("Este programa está na versão", versao)
-	fmt.Println("\n1. Iniciar monitoramento")
-	fmt.Println("2. Exibir os logs")
-	fmt.Println("0. Sair")
-	fmt.Print("\nInforme: ")
-
-	var comando int
-	fmt.Scan(&comando)
-
-	fmt.Println(comando)
+	comando := leComando()
 
 	switch comando {
 	case 1:
@@ -26,8 +17,33 @@ func main() {
 		fmt.Println("Exibindo os logs")
 	case 0:
 		fmt.Println("Saindo")
+		os.Exit(0)
 	default:
 		fmt.Println("Opção inválida!")
+		os.Exit(-1)
 	}
 
+}
+
+func exibeMenu() {
+	fmt.Println("\n1. Iniciar monitoramento")
+	fmt.Println("2. Exibir os logs")
+	fmt.Println("0. Sair")
+	fmt.Print("\nInforme: ")
+}
+
+func leComando() int {
+	var comando int
+	fmt.Scan(&comando)
+
+	fmt.Println(comando)
+	return comando
+}
+
+func boasVindas() {
+	nome := "Elvis"
+	versao := 1.1
+
+	fmt.Println("Olá, sr.", nome)
+	fmt.Println("Este programa está na versão", versao)
 }
