@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+
 	nome := "Elvis"
 	versao := 1.1
 
@@ -17,5 +18,15 @@ func main() {
 	fmt.Scan(&comando)
 
 	fmt.Println(comando)
+
+	if comando == 1 {
+		fmt.Println("Monitorando")
+	} else if comando == 2 {
+		fmt.Println("Exibindo os logs")
+	} else if comando == 0 {
+		fmt.Println("Saindo")
+	} else {
+		fmt.Println("Opção inválida!")
+	}
 
 }
