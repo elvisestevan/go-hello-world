@@ -7,21 +7,23 @@ import "net/http"
 func main() {
 
 	boasVindas()
-	exibeMenu()
+	for {
+		exibeMenu()
 
-	comando := leComando()
+		comando := leComando()
 
-	switch comando {
-	case 1:
-		iniciarMonitoramento()
-	case 2:
-		fmt.Println("Exibindo os logs")
-	case 0:
-		fmt.Println("Saindo")
-		os.Exit(0)
-	default:
-		fmt.Println("Opção inválida!")
-		os.Exit(-1)
+		switch comando {
+		case 1:
+			iniciarMonitoramento()
+		case 2:
+			fmt.Println("Exibindo os logs")
+		case 0:
+			fmt.Println("Saindo")
+			os.Exit(0)
+		default:
+			fmt.Println("Opção inválida!")
+			os.Exit(-1)
+		}
 	}
 
 }
@@ -57,7 +59,13 @@ func boasVindas() {
 
 func iniciarMonitoramento() {
 	fmt.Println("Monitorando")
-	site := "https://alura.com.br"
+	site := "https://random-status-code.herokuapp.com"
 	response, _ := http.Get(site)
-	fmt.Println(response)
+	
+	if response.StatusCode == 200 {
+		fmt.Println("Site foi carregado com sucesso!")
+	} else {
+		fmt.Println("Site:", site, "está com problema, status code:", response.StatusCode)
+	}
+
 }
