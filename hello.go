@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 import "os"
+import "net/http"
 
 func main() {
 
@@ -12,7 +13,7 @@ func main() {
 
 	switch comando {
 	case 1:
-		fmt.Println("Monitorando")
+		iniciarMonitoramento()
 	case 2:
 		fmt.Println("Exibindo os logs")
 	case 0:
@@ -23,6 +24,12 @@ func main() {
 		os.Exit(-1)
 	}
 
+}
+
+func devolveNomeCompleto() (string, string) {
+	nome := "Elvis"
+	sobreNome := "Estevan"
+	return nome, sobreNome
 }
 
 func exibeMenu() {
@@ -41,9 +48,16 @@ func leComando() int {
 }
 
 func boasVindas() {
-	nome := "Elvis"
+	nome, sobreNome := devolveNomeCompleto()
 	versao := 1.1
 
-	fmt.Println("Olá, sr.", nome)
+	fmt.Println("Olá, sr.", nome, sobreNome)
 	fmt.Println("Este programa está na versão", versao)
+}
+
+func iniciarMonitoramento() {
+	fmt.Println("Monitorando")
+	site := "https://alura.com.br"
+	response, _ := http.Get(site)
+	fmt.Println(response)
 }
